@@ -11,7 +11,7 @@ Setup Environment from Environment.yml file\
 $ conda env create -f environment.yml 
 
 Activate Conda environment\
-$ conda activate environment_name
+$ conda activate Widget
 
 # Run Website
 Navigate to top level directory\
