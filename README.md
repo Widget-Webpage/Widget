@@ -13,6 +13,18 @@ $ conda env create -f environment.yml
 Activate Conda environment\
 $ conda activate Widget
 
+# Recreate Conda environment after changes to environment file
+Delete Environemnt 
+$ conda remove --name Widget --all
+
+Setup Environment from Environment.yml file\
+$ conda env create -f environment.yml 
+
+Activate Conda environment\
+$ conda activate Widget
+
 # Run Website
 Navigate to top level directory\
 $ python3 manage.py runserver
+
+Webserver should run on localhost:8000
