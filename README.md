@@ -14,7 +14,7 @@ Activate Conda environment\
 $ conda activate Widget
 
 # Recreate Conda environment after changes to environment file
-Delete Environemnt 
+Delete Environment\
 $ conda remove --name Widget --all
 
 Setup Environment from Environment.yml file\
