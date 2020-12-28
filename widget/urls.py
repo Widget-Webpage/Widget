@@ -17,6 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 urlpatterns = [
-    path('', views.index),
+    #localhost/
+    path('twitter/', views.twitter_widget),
+
+    #localhost/
+    path('weather/', views.weather_widget),
+
+    #localhost/admin
     path('admin/', admin.site.urls),
 ]
