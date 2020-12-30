@@ -4,16 +4,29 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script>
+      $(document).ready(function() {
+    
+        $("#X").draggable().resizable({
+          alsoResize: "#openweathermap-widget-11, #container-openweathermap-widget-11, .widget-left"
+        });
+      });
+</script>
 </head>
 <style>
-    .openweathermap-widget-11 .resizable .resizers{
+    .X .resizable .resizers{
       width: 100%;
       height: 100%;
       border: 3px solid #4286f4;
       box-sizing: border-box;
     }
 
-    .openweathermap-widget-11 .resizable .resizers .resizer{
+    .X .resizable .resizers .resizer{
       width: 10px;
       height: 10px;
       border-radius: 50%; /*magic to turn square into circle*/
@@ -21,22 +34,22 @@
       border: 3px solid #4286f4;
       position: absolute;
     }
-    .openweathermap-widget-11 .resizable .resizers .resizer.top-left {
+    .X .resizable .resizers .resizer.top-left {
       left: -5px;
       top: -5px;
       cursor: nwse-resize; /*resizer cursor*/
     }
-    .openweathermap-widget-11 .resizable .resizers .resizer.top-right {
+    .X .resizable .resizers .resizer.top-right {
       right: -5px;
       top: -5px;
       cursor: nesw-resize;
     }
-    .openweathermap-widget-11 .resizable .resizers .resizer.bottom-left {
+    .X .resizable .resizers .resizer.bottom-left {
       left: -5px;
       bottom: -5px;
       cursor: nesw-resize;
     }
-    .openweathermap-widget-11 .resizable .resizers .resizer.bottom-right {
+    .X .resizable .resizers .resizer.bottom-right {
       right: -5px;
       bottom: -5px;
       cursor: nwse-resize;
@@ -66,17 +79,34 @@
     <h1>Hello, Weather!</h1>
     <h1>Hello, Weather2!</h1>
 
+    <div class="X" id="X">
+      <div class="openweathermap-widget-11" id="openweathermap-widget-11"></div>
+    
+      <div class='resizable'>
+          <div class='resizers'>
+              <div class='resizer top-left'></div>
+              <div class='resizer top-right'></div>
+              <div class='resizer bottom-left'></div>
+              <div class='resizer bottom-right'></div>
+          </div>
+      </div>
 
-    <div class="openweathermap-widget-11" id="openweathermap-widget-11">
-        <div class='resizable'>
-            <div class='resizers'>
-                <div class='resizer top-left'></div>
-                <div class='resizer top-right'></div>
-                <div class='resizer bottom-left'></div>
-                <div class='resizer bottom-right'></div>
-            </div>
-        </div>
     </div>
+
+
+    
+
+<!--    -->
+<!--    <div class="openweathermap-widget-11" id="openweathermap-widget-11">-->
+<!--        <div class='resizable'>-->
+<!--            <div class='resizers'>-->
+<!--                <div class='resizer top-left'></div>-->
+<!--                <div class='resizer top-right'></div>-->
+<!--                <div class='resizer bottom-left'></div>-->
+<!--                <div class='resizer bottom-right'></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
     <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
@@ -86,13 +116,13 @@
 
 {# Make widget draggable #}
 <script>
-    dragElement(document.getElementById("openweathermap-widget-11"));
+    //dragElement(document.getElementById("X"));
 
     function dragElement(elmnt) {
       var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-      if (document.getElementById(elmnt.id)) {
+      if (document.getElementById("openweathermap-widget-11")) {
         // if present, the header is where you move the DIV from:
-        document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+        document.getElementById("openweathermap-widget-11").onmousedown = dragMouseDown;
       } else {
         // otherwise, move the DIV from anywhere inside the DIV:
         elmnt.onmousedown = dragMouseDown;
@@ -130,7 +160,7 @@
     }
 </script>
 
-    {# Keep the widget on screen #}
+{# Keep the widget on screen #}
 <script>
     $(document).ready(function() {
     var e = $('#openweathermap-widget-11');
@@ -151,7 +181,8 @@
 <script>
     /*Make resizable div by Hung Nguyen*/
 function makeResizableDiv(div) {
-  const element = document.querySelector(div);
+  //const element = document.querySelector(div);
+  const element = document.getElementById(div);
   const resizers = document.querySelectorAll(div + ' .resizer')
   const minimum_size = 20;
   let original_width = 0;
@@ -227,7 +258,7 @@ function makeResizableDiv(div) {
   }
 }
 
-makeResizableDiv('.openweathermap-widget-11')
+// makeResizableDiv('.X')
 </script>
 
 </body>
