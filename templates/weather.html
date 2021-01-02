@@ -13,7 +13,7 @@
 </head>
 <style>
     #openweathermap-widget-11{
-        outline: 2px dashed green;
+        /* outline: 2px dashed green; */
         position: relative;
         /*left: 380px;*/
         /*top: 150px;*/
@@ -41,7 +41,7 @@
         width: 680px;
         height: 230px;
         cursor: move;
-        outline: 2px dashed red;
+        /* outline: 2px dashed red; */
         /* justify-content: center; */
     }
 </style>
@@ -64,7 +64,11 @@
 
 
 <script>
-    $("#X").draggable({scroll: false});
+    $("#X").draggable({
+      scroll: false,
+      containment: "window"             
+    });
+    
     var $el = $("#openweathermap-widget-11");
     var elHeight = $el.outerHeight();
     var elWidth = $el.outerWidth();
