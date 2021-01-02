@@ -3,15 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
+<style>
+    #twitter-widget-0{
+        position: relative;
+        outline: 2px dashed black;
+        transform: translate(0%, 0%);
+        /*transform-origin: center center;*/
+        /*left: 50%;*/
+        /*top: 50%;*/
+    }
+    #X{
+        outline: 2px dashed green;
+
+        position: relative;
+        resize: both;
+
+        height: 1000px;
+        width: 300px;
+
+        max-height: 1000px;
+        max-width: 1000px;
+        /*transform: translate(-50%, -50%);*/
+        /*align-content: center;*/
+        /*justify-content: center;*/
+
+        /*top: 0px;*/
+        /*left: 350px;*/
+    }
+</style>
 <body>
     <h1>Hello, Twitter!</h1>
 
-    <article name = widget1 id = widget1>
-    </article>
+    <div id="X">
 
+        <a id="T" class="twitter-timeline" data-width=1000px data-height=1000px data-theme="light" href="https://twitter.com/DetroitPistons?ref_src=twsrc%5Etfw">Tweets by DetroitPistons</a>
+<!--    </div>-->
+    </div>
 
-    <a class="twitter-timeline" data-width="300" data-height="600" data-theme="light" href="https://twitter.com/DetroitPistons?ref_src=twsrc%5Etfw">Tweets by DetroitPistons</a>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#twitter-widget-0").css(
+            {"position": "relative",
+            });
+        })
+
+
+        $("#X").draggable({
+            scroll: false,
+            containment: "window"
+        });
+
+        // $("#X").resizable({
+        //
+        // });
+
+
+
+        var $el = $("#twitter-widget-0");
+        var elHeight = $el.outerHeight();
+        var elWidth = $el.outerWidth();
+        console.log(elHeight);
+        console.log(elWidth);
+
+        var $wrapper = $("#X");
+
+        $wrapper.resizable({
+          resize: doResize,
+          start: function(event, ui) {
+                ui.element.append($("<div/>", {
+                    id: "iframe-barrier",
+                    css: {
+                        position: "absolute",
+                        top: 0,
+                        right: 0,
+                        bottom: 0,
+                        left: 0,
+                        "z-index": 10
+                }
+                }));
+            },
+        stop: function(event, ui) {
+            $("#iframe-barrier", ui.element).remove();
+        }
+
+        });
+
+        function doResize(event, ui) {
+
+          var scale, origin;
+
+          scale = Math.min(
+            ui.size.width / elWidth,
+            ui.size.height / elHeight
+          );
+          $el.css({
+            transform: "translate(-50%, -50%) " + "scale(" + ui.size.width / elWidth + "," + ui.size.height / elHeight + ")"
+            //   transform: "scale(" + scale + ")"
+          });
+
+        }
+        var starterData = {
+          size: {
+            width: $wrapper.width(),
+            height: $wrapper.height()
+          }
+        }
+        doResize(null, starterData);
+    </script>
 </body>
 </html>
