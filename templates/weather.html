@@ -53,56 +53,51 @@
         <div class="openweathermap-widget-11" id="openweathermap-widget-11"></div>
     </div>
 
-
-
-
-
-
     <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
-
     <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: '5004062',appid: '680244fad465ef79f60535dcf93de108',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
 
+    <script>
+        // This script allows a widget to be draggable and resizable
+        // TODO: bug with containment where resizing really small allows container to move up
+        $("#X").draggable({
+          scroll: false,
+          containment: "window"
+        });
 
-<script>
-    $("#X").draggable({
-      scroll: false,
-      containment: "window"             
-    });
-    
-    var $el = $("#openweathermap-widget-11");
-    var elHeight = $el.outerHeight();
-    var elWidth = $el.outerWidth();
-    console.log(elHeight);
-    console.log(elWidth);
+        var $el = $("#openweathermap-widget-11");
+        var elHeight = $el.outerHeight();
+        var elWidth = $el.outerWidth();
+        console.log(elHeight);
+        console.log(elWidth);
 
-    var $wrapper = $("#X");
+        var $wrapper = $("#X");
 
-    $wrapper.resizable({
-      resize: doResize
-    });
+        $wrapper.resizable({
+          resize: doResize
+        });
 
-    function doResize(event, ui) {
+        function doResize(event, ui) {
 
-      var scale, origin;
+          var scale, origin;
 
-      scale = Math.min(
-        ui.size.width / elWidth,
-        ui.size.height / elHeight
-      );
-      $el.css({
-        transform: "translate(-50%, -50%) " + "scale(" + ui.size.width / elWidth + "," + ui.size.height / elHeight + ")"
-        //   transform: "scale(" + scale + ")"
-      });
+          scale = Math.min(
+            ui.size.width / elWidth,
+            ui.size.height / elHeight
+          );
+          $el.css({
+            transform: "translate(-50%, -50%) " + "scale(" + ui.size.width / elWidth + "," + ui.size.height / elHeight + ")"
+            //   transform: "scale(" + scale + ")"
+          });
 
-    }
-    var starterData = {
-      size: {
-        width: $wrapper.width(),
-        height: $wrapper.height()
-      }
-    }
-    doResize(null, starterData);
-</script>
+        }
+        var starterData = {
+          size: {
+            width: $wrapper.width(),
+            height: $wrapper.height()
+          }
+        }
+        doResize(null, starterData);
+    </script>
 
 </body>
 </html>
