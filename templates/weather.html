@@ -13,10 +13,7 @@
 </head>
 <style>
     #openweathermap-widget-11{
-        /* outline: 2px dashed green; */
         position: relative;
-        /*left: 380px;*/
-        /*top: 150px;*/
 
         left: 50%;
         top: 50%;
@@ -31,7 +28,7 @@
     }
 
     .X{
-        position: relative;
+        position: absolute;
         left: 350px;
         top: 0px;
 
@@ -41,36 +38,80 @@
         width: 680px;
         height: 230px;
         cursor: move;
+
         /* outline: 2px dashed red; */
         /* justify-content: center; */
+    }
+    div{
+      outline: 2px dashed green;
+      box-shadow: none;
+    }
+
+    .openweathermap-widget-12{
+        left: 50%;
+        top: 50%;
+        /*transform: translate(-50%, -50%);*/
+
+        transform-origin: center center;
+        position: relative;
+        outline: 2px dashed red;
+        width: 225px;
+        height: 235px;
+
+    }
+    .Y{
+        position:absolute;
+
+        width: 225px;
+        height: 235px;
+        cursor: move;
+        resize: both;
+
+
+    }
+
+    .widget-left{
+        /*There is a box shadow on all weather widgets, small TODO remove*/
+        box-shadow: none;
     }
 </style>
 
 <body>
     <h1>Hello, Weather!</h1>
     <h1>Hello, Weather2!</h1>
+
     <div class="X" id="X">
         <div class="openweathermap-widget-11" id="openweathermap-widget-11"></div>
     </div>
 
-    <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
+    <div class="Y" id="Y">
+        <div class="openweathermap-widget-12" id="openweathermap-widget-12"></div>
+    </div>
+
+
+<!--    One Day Forecast-->
+    <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 12,cityid: '5004062',appid: '680244fad465ef79f60535dcf93de108',units: 'imperial',containerid: 'openweathermap-widget-12',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+
+<!--    Five Day Forecast-->
     <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: '5004062',appid: '680244fad465ef79f60535dcf93de108',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+    <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
 
     <script>
-        // This script allows a widget to be draggable and resizable
+        function drag_and_resize(parent, child){
+            // This script allows a widget to be draggable and resizable
         // TODO: bug with containment where resizing really small allows container to move up
-        $("#X").draggable({
+        $(parent).draggable({
           scroll: false,
           containment: "window"
         });
 
-        var $el = $("#openweathermap-widget-11");
+        var $el = $(child);
         var elHeight = $el.outerHeight();
         var elWidth = $el.outerWidth();
         console.log(elHeight);
         console.log(elWidth);
 
-        var $wrapper = $("#X");
+        var $wrapper = $(parent);
 
         $wrapper.resizable({
           resize: doResize
@@ -97,6 +138,10 @@
           }
         }
         doResize(null, starterData);
+    }
+
+    drag_and_resize("#X", "#openweathermap-widget-11");
+    drag_and_resize("#Y", "#openweathermap-widget-12");
     </script>
 
 </body>
