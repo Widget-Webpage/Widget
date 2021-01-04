@@ -74,6 +74,16 @@
         /*There is a box shadow on all weather widgets, small TODO remove*/
         box-shadow: none;
     }
+
+    #tradingview-widget-container{
+      cursor: move;
+      position: absolute;
+    }
+
+    #tradingview-widget-container__widget{
+      position: relative;
+      transform-origin: center center;
+    }
 </style>
 
 <body>
@@ -96,6 +106,48 @@
     <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: '5004062',appid: '680244fad465ef79f60535dcf93de108',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
     <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
 
+        <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container" id="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget" id="tradingview-widget-container__widget"></div>
+<!--      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Quotes</span></a> by TradingView</div>-->
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+      {
+      "symbols": [
+        {
+          "proName": "BITSTAMP:BTCUSD",
+          "title": "BTC/USD"
+        },
+        {
+          "proName": "BITSTAMP:ETHUSD",
+          "title": "ETH/USD"
+        },
+        {
+          "description": "",
+          "proName": "NYSE:C"
+        },
+        {
+          "description": "",
+          "proName": "NASDAQ:TSLA"
+        },
+        {
+          "description": "",
+          "proName": "NYSE:GM"
+        },
+        {
+          "description": "",
+          "proName": "SPY"
+        }
+
+      ],
+      "colorTheme": "light",
+      "isTransparent": false,
+      "showSymbolLogo": true,
+      "locale": "en"
+    }
+      </script>
+    </div>
+    <!-- TradingView Widget END -->
+
     <script>
         function drag_and_resize(parent, child){
             // This script allows a widget to be draggable and resizable
@@ -114,7 +166,24 @@
         var $wrapper = $(parent);
 
         $wrapper.resizable({
-          resize: doResize
+          resize: doResize,
+          start: function(event, ui) {
+                ui.element.append($("<div/>", {
+                    id: "iframe-barrier",
+                    css: {
+                        position: "absolute",
+                        top: 0,
+                        right: 0,
+                        bottom: 0,
+                        left: 0,
+                        "z-index": 10
+                }
+                }));
+            },
+        stop: function(event, ui) {
+            $("#iframe-barrier", ui.element).remove();
+        }
+
         });
 
         function doResize(event, ui) {
@@ -142,6 +211,7 @@
 
     drag_and_resize("#X", "#openweathermap-widget-11");
     drag_and_resize("#Y", "#openweathermap-widget-12");
+    drag_and_resize("#tradingview-widget-container", "#tradingview-widget-container__widget");
     </script>
 
 </body>
