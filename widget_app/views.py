@@ -6,3 +6,6 @@ def twitter_widget(request):
 
 def weather_widget(request):
     return render(request, "weather.html")
+
+def empty_canvas(request):
+    return render(request, "empty_canvas.html")

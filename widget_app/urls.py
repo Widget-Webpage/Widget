@@ -8,4 +8,6 @@ urlpatterns = [
 
     # localhost/
     path('weather/', views.weather_widget),
+
+    path('', views.empty_canvas),
 ]
