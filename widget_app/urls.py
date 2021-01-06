@@ -1,0 +1,11 @@
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    # localhost/
+    path('twitter/', views.twitter_widget),
+
+    # localhost/
+    path('weather/', views.weather_widget),
+]
