@@ -10,4 +10,6 @@ urlpatterns = [
     path('weather/', views.weather_widget),
 
     path('', views.empty_canvas),
+
+    path('canvas2', views.empty_canvas2),
 ]

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .trip-modal{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+    }
+
+    .trip_modal_content{
+        width: 1000px;
+        height: 800px;
+        background-color: #E1C323;
+        border-radius: 4px;
+        position:relative;
+    }
+
+    .close{
+        position: absolute;
+        top:0;
+        right: 14px;
+        font-size: 42px;
+        transform: rotate(45deg);
+        cursor: pointer;
+    }
+
+        #schedule_new_trip_button{
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        border-radius: 25px;
+        left: 392px;
+        top: 376px;
+        background: #E1C323;
+        text-align: center;
+        color: #2A3592;
+        font-size: 42px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+<h1>hello</h1>
+    <div id="schedule_new_trip_button"class="schedule_button" title="schedule new trip">
+        +
+        <script type="text/javascript">
+            const div = document.getElementById('schedule_new_trip_button');
+            div.addEventListener('click', function() {
+                document.querySelector(".trip-modal").style.display = "flex";
+            });
+        </script>
+
+        <!--WHY DOESN"T THIS WORK
+        <script src='../schedule.js'>
+        </script>
+        -->
+
+    </div>
+
+ <div class="trip-modal">
+        <div class="trip_modal_content">
+            <div class="close" id="schedule_close">+
+                <script type="text/javascript">
+                    const close = document.getElementById('schedule_close');
+                    close.addEventListener('click', function(){
+                        document.querySelector(".trip-modal").style.display = "none";
+                    });
+                </script>
+            </div>
+
+            <p>hello from modal</p>
+        </div>
+</div>
+
+</body>
+</html>

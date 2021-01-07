@@ -9,3 +9,6 @@ def weather_widget(request):
 
 def empty_canvas(request):
     return render(request, "empty_canvas.html")
+
+def empty_canvas2(request):
+    return render(request, "empty_canvas2.html")
