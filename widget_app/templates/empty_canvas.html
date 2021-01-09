@@ -21,7 +21,6 @@
   }
   #edit_button {
     background: #B7A9A1;
-    outline: 2px dashed red;
   }
   #add_widget_button {
     background: #DA9022;
@@ -30,17 +29,13 @@
     background: #0077BE;
   }
 
-  .app_library{
-    height: 57%;
-    width: 44.2%;
-    border-radius: 0px;
-    position:absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(138, 129, 129);
-    display:none;
-    z-index: 1;
+  .application_modal{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    position: absolute;
+    top: 0;
+    display: none;
   }
 
   #library_title{
@@ -59,8 +54,43 @@
     display: flex;
     align-items: center;
     color: #000000;
-    
   }
+
+  .application_modal_content{
+    height: 57%;
+    width: 44.2%;
+    border-radius: 0px;
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(138, 129, 129);
+  }
+
+  .twitter_img{
+    grid-area: twitter;
+    height: 45px;
+    width: 80px;
+    position: relative;
+  }
+
+  #application_container{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 20% 20% 20% 20%;
+    grid-template-areas: "twitter1 twitter2 twitter3 twitter4";
+
+    width: 85%;
+    height: 70%;
+
+    background-color: rgb(112, 26, 26);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+
+
 
   .close{
     position: absolute;
@@ -71,9 +101,9 @@
     cursor: pointer;
   }
 
-  div{
-    outline: 2px dashed green;
-  }
+  /*div{*/
+  /*  outline: 2px dashed green;*/
+  /*}*/
 
   .modal_arrow{
     outline: 2px dashed black;
@@ -91,47 +121,95 @@
   #right_arrow_svg{
     left: 98%;
     transform: translate(-98%, -50%);
+
   }
 
-  #application_container{
-    width: 80%;
-    height: 60%;
-    background-color: rgb(112, 26, 26);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  html, body{
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+  .app_dot {
     position: absolute;
+
+    top: 90%;
+    height: 15px;
+    width: 15px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  #app_dot1{
+    left: 46%;
+  }
+  #app_dot2{
+    left: 50%;
+  }
+  #app_dot3{
+    left: 54%;
   }
 
+  #twitter1{
+    grid-area: twitter1;
+  }
+
+  #twitter2{
+    grid-area: twitter2;
+  }
+  #twitter3{
+    grid-area: twitter3;
+  }
+  #twitter4{
+    grid-area: twitter4;
+  }
+
+  .twitter_img{
+    outline: 2px dashed green;
+  }
 </style>
 
 <body>
+
 
   <button class="action_button" id="manage_canvases_button" type="button" onclick="alert('Hello world!')">Manage Canvases</button>
   <button class="action_button" id="edit_button" type="button" onclick="alert('Hello world!')">Edit Mode</button>
   <button class="action_button" id="add_widget_button" type="button" onclick="open_modal()">Add Widget</button>
 
-  <div class="app_library">
-    <div id="library_title">Apps</div>
-    <div class="close" id="modal_close">+
-      <script type="text/javascript">
-          const close = document.getElementById('modal_close');
-          close.addEventListener('click', function(){
-              document.querySelector(".app_library").style.display = "none";
-          });
-      </script>
-    </div>
+  <div class="application_modal">
+    <div class="application_modal_content">
+      <div id="library_title">Apps</div>
 
-    <div id="application_container"></div>
+      <div class="close" id="modal_close">+
+        <script type="text/javascript">
+            const close = document.getElementById('modal_close');
+            close.addEventListener('click', function(){
+                document.querySelector(".application_modal").style.display = "none";
+            });
+        </script>
+      </div>
 
-    {% load static %}
-    <img class="modal_arrow" id="left_arrow_svg" src="{% static 'arrow_back_ios_24px.svg' %}">
-    <img class="modal_arrow" id="right_arrow_svg" src="{% static 'arrow_forward_ios_24px.svg' %}">
+      {% load static %}
+      <div id="application_container">
+        <img id = "twitter1" class="twitter_img" src="{% static 'Twitter-Emblem.png' %}">
+        <img id = "twitter2" class="twitter_img" src="{% static 'Twitter-Emblem.png' %}">
+        <img id = "twitter3"class="twitter_img" src="{% static 'Twitter-Emblem.png' %}">
+        <img id = "twitter4" class="twitter_img" src="{% static 'Twitter-Emblem.png' %}">
+      </div>
+
+      <img class="modal_arrow" id="left_arrow_svg" src="{% static 'arrow_back_ios_24px.svg' %}">
+      <img class="modal_arrow" id="right_arrow_svg" src="{% static 'arrow_forward_ios_24px.svg' %}">
+
+      <div id="app_dot1" class="app_dot"></div>
+      <div id="app_dot2" class="app_dot"></div>
+      <div id="app_dot3" class="app_dot"></div>
   </div>
+
 
   <script type="text/javascript">
     function open_modal(){
-      document.querySelector(".app_library").style.display = "flex";
+      document.querySelector(".application_modal").style.display = "flex";
+
     }
   </script>
 
