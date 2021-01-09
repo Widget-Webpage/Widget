@@ -4,52 +4,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-     
 </head>
 
 <style>
-  #edit_button {
+  .action_button{
     position: relative;
+    float: right;
     width: 179px;
     height: 48px;
-
-    float: right;
-    background: #B7A9A1;
     border: None;
     font-family:'Courier New';
     font-size: 1.1em;
     color: #FDF1F1;
     border-radius: 8px;
     margin: 10px;
+  }
+  #edit_button {
+    background: #B7A9A1;
     outline: 2px dashed red;
   }
   #add_widget_button {
-    position: relative;
-    width: 179px;
-    height: 48px;
-
-    float: right;
     background: #DA9022;
-    border: None;
-    font-family:'Courier New';
-    font-size: 1.1em;
-    color: #FDF1F1;
-    border-radius: 8px;
-    margin: 10px;
-
   }
   #manage_canvases_button {
-    position: relative;
-    width: 179px;
-    height: 48px;
-    float: right;
     background: #0077BE;
-    border: None;
-    font-family:'Courier New';
-    font-size: 1.1em;
-    color: #FDF1F1;
-    border-radius: 8px;
-    margin: 10px;
   }
 
   .app_library{
@@ -62,6 +40,7 @@
     transform: translate(-50%, -50%);
     background-color: rgb(138, 129, 129);
     display:none;
+    z-index: 1;
   }
 
   #library_title{
@@ -102,7 +81,6 @@
     top: 50%;
     height: 10%;
     width: 3%;
-
   }
 
   #left_arrow_svg{
@@ -129,19 +107,19 @@
 
 <body>
 
-  <button id="manage_canvases_button" type="button" onclick="alert('Hello world!')">Manage Canvases</button>
-  <button id="edit_button" type="button" onclick="alert('Hello world!')">Edit Mode</button>
-  <button id="add_widget_button" type="button" onclick="open_modal()">Add Widget</button>
+  <button class="action_button" id="manage_canvases_button" type="button" onclick="alert('Hello world!')">Manage Canvases</button>
+  <button class="action_button" id="edit_button" type="button" onclick="alert('Hello world!')">Edit Mode</button>
+  <button class="action_button" id="add_widget_button" type="button" onclick="open_modal()">Add Widget</button>
 
- <div class="app_library">
+  <div class="app_library">
     <div id="library_title">Apps</div>
     <div class="close" id="modal_close">+
-                <script type="text/javascript">
-                    const close = document.getElementById('modal_close');
-                    close.addEventListener('click', function(){
-                        document.querySelector(".app_library").style.display = "none";
-                    });
-                </script>
+      <script type="text/javascript">
+          const close = document.getElementById('modal_close');
+          close.addEventListener('click', function(){
+              document.querySelector(".app_library").style.display = "none";
+          });
+      </script>
     </div>
 
     <div id="application_container"></div>
@@ -149,17 +127,13 @@
     {% load static %}
     <img class="modal_arrow" id="left_arrow_svg" src="{% static 'arrow_back_ios_24px.svg' %}">
     <img class="modal_arrow" id="right_arrow_svg" src="{% static 'arrow_forward_ios_24px.svg' %}">
-</div>
+  </div>
 
   <script type="text/javascript">
     function open_modal(){
       document.querySelector(".app_library").style.display = "flex";
     }
   </script>
-  
-
- 
-
 
 </body>
 </html>
