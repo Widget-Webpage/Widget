@@ -51,9 +51,8 @@
     font-weight: normal;
     font-size: 36px;
     line-height: 48px;
-    display: flex;
-    align-items: center;
     color: #000000;
+    text-align: center;
   }
 
   .application_modal_content{
@@ -67,18 +66,15 @@
     background-color: rgb(138, 129, 129);
   }
 
-  .twitter_img{
-    grid-area: twitter;
-    height: 60px;
-    width: 60px;
-    position: relative;
-  }
+
 
   #application_container{
     display: grid;
+    grid-auto-flow: column;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 20% 20% 20% 20%;
-    grid-template-areas: "twitter1 twitter2 twitter3 twitter4";
+    grid-template-rows: 50% 50%;
+    grid-auto-columns: 25%;
+    overflow-x: scroll;
 
     width: 85%;
     height: 70%;
@@ -88,9 +84,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
-    justify-items: center;
   }
-
 
 
   .close{
@@ -101,10 +95,6 @@
     transform: rotate(45deg);
     cursor: pointer;
   }
-
-  /*div{*/
-  /*  outline: 2px dashed green;*/
-  /*}*/
 
   .modal_arrow{
     outline: 2px dashed black;
@@ -151,28 +141,17 @@
     left: 54%;
   }
 
-  #twitter1{
-    grid-area: twitter1;
-  }
-
-  #twitter2{
-    grid-area: twitter2;
-  }
-  #twitter3{
-    grid-area: twitter3;
-  }
-  #twitter4{
-    grid-area: twitter4;
-  }
 
   .twitter_img{
-    outline: 2px dashed green;
+    width: 70%;
+    height: 70%;
+
+    align-self: center;
+    justify-self: center;
   }
 </style>
 
 <body>
-
-
   <button class="action_button" id="manage_canvases_button" type="button" onclick="alert('Hello world!')">Manage Canvases</button>
   <button class="action_button" id="edit_button" type="button" onclick="alert('Hello world!')">Edit Mode</button>
   <button class="action_button" id="add_widget_button" type="button" onclick="open_modal()">Add Widget</button>
@@ -194,8 +173,14 @@
       <div id="application_container">
         <img id = "twitter1" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
         <img id = "twitter2" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
-        <img id = "twitter3"class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
+        <img id = "twitter3" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
         <img id = "twitter4" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
+        <img id = "twitter5" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
+        <img id = "twitter6" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
+        <img id = "twitter7" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
+        <img id = "twitter8" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
+        <img id = "twitter9" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
+        <img id = "twitter10" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
       </div>
 
       <img class="modal_arrow" id="left_arrow_svg" src="{% static 'arrow_back_ios_24px.svg' %}">
@@ -204,13 +189,13 @@
       <div id="app_dot1" class="app_dot"></div>
       <div id="app_dot2" class="app_dot"></div>
       <div id="app_dot3" class="app_dot"></div>
+    </div>
   </div>
 
 
   <script type="text/javascript">
     function open_modal(){
       document.querySelector(".application_modal").style.display = "flex";
-
     }
   </script>
 
