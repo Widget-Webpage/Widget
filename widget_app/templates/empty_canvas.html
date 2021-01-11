@@ -7,6 +7,9 @@
 </head>
 
 <style>
+  *{
+    padding: 0px;
+  }
   .action_button{
     position: relative;
     float: right;
@@ -44,12 +47,13 @@
     height: 16%;
     left: 50%;
     top: 0%;
+    margin: 0.5vw;
     transform: translate(-50%, -0%);
     justify-content: center;
     font-family: Red Hat Text;
     font-style: normal;
     font-weight: normal;
-    font-size: 36px;
+    font-size: 2vw;
     line-height: 48px;
     color: #000000;
     text-align: center;
@@ -142,12 +146,43 @@
   }
 
 
-  .twitter_img{
-    width: 70%;
-    height: 70%;
+  #twitter1_div{
+    height: 100%;
+    width: 100%;
+    /*align-self: center;*/
+    /*justify-self: center;*/
+    /*justify-content: center;*/
+    outline: 2px dashed green;
+  }
 
-    align-self: center;
+  .twitter_img1{
+    width: 50%;
+    height: 50%;
+    /*align-self: center;*/
     justify-self: center;
+    /*overflow: hidden;*/
+    position: relative;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    margin: 0;
+  }
+
+  .twitter_img{
+    width: 50%;
+    height: 50%;
+    /*align-self: center;*/
+    /*justify-self: center;*/
+    left: 50%;
+    overflow: hidden;
+  }
+
+  #application_container > #twitter1_div > h1{
+    position: relative;
+    color: white;
+    text-align: center;
+    margin: .5vw;
+    font-size: 1.5vw;
   }
 </style>
 
@@ -171,8 +206,11 @@
 
       {% load static %}
       <div id="application_container">
-        <img id = "twitter1" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
-        <img id = "twitter2" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
+        <div id = "twitter1_div">
+          <img id = "twitter1" class="twitter_img1" src="{% static 'Twitter-Emblem_updated.jpg' %}">
+          <h1> Facebook  </h1>
+        </div>
+        <img id = "twitter2" class="twitter_img" src="{% static 'Trading_View.png' %}">
         <img id = "twitter3" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
         <img id = "twitter4" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
         <img id = "twitter5" class="twitter_img" src="{% static 'Twitter-Emblem_updated.jpg' %}">
