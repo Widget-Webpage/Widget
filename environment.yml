@@ -8,12 +8,14 @@ dependencies:
   - ca-certificates=2020.10.14
   - certifi=2020.6.20
   - django=3.1.2
+  - djangorestframework
   - krb5=1.17.1
   - libcxx
   - libedit=3.1.20191231
   - libffi=3.3
   - libpq=12.2
   - ncurses=6.2
+  - nodejs = 15.3
   - openssl=1.1.1h
   - pip=20.3.3
   - psycopg2=2.8.5
